@@ -2,7 +2,7 @@
 out/
 !**/src/main/**/out/
 !**/src/test/**/out/
-.idea/
+/.idea/
 *.iml
 
 ### Eclipse ###
@@ -29,4 +29,3 @@ bin/
 
 ### Mac OS ###
 .DS_Store
-/.idea/
