@@ -1,10 +1,7 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) throws IOException {
@@ -12,7 +9,7 @@ public class Main {
         System.out.println("Enter the absolute path at which the" +
                 "'add_trade.mcfunction' file resides");
         String path = reader.readLine();
-        if(path.equals("h")||path.equals("here")) path = System.getProperty("user.dir");
+        if(path.equals("h")||path.equals("here")) path = System.getProperty("user.dir")+"\\custom-files";
         System.out.println("Is the file residing at: '" + path + "'? (Y/N) q for quitting");
         String confirm = reader.readLine().toLowerCase();
         while (!(confirm.equals("y") || confirm.equals("yes"))) {
@@ -346,10 +343,10 @@ public class Main {
     }
 
     private static Map<String, String> getPreferences() {
-        Map<String,String> preferences = new HashMap<>();
+        Map<String,String> preferences = new TreeMap<>();
         preferences.put("name","The name to be displayed for this head item.");
         preferences.put("texture", "The value used to compute the texture of the head" +
-                "(a value composed of characters and digits ending with an equal '=' sign)");
+                "(a value composed of characters and digits)");
         preferences.put("usage", "How many times this trade can be used from a single trader.");
         preferences.put("price", "How many emeralds this trade should cost.");
         preferences.put("quantity", "How many items the trade will give per transaction.");
