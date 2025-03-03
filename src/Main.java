@@ -54,7 +54,7 @@ public class Main {
                     action = "quit";
                     break;
                 } else {
-                    while (!selection.startsWith("e")){
+                    while (!selection.equals("exit")){
                         System.out.print("Inserting a new head with ");
                         Map<String, String> preferences = getPreferences();
                         if (selection.startsWith("f")){
@@ -72,26 +72,25 @@ public class Main {
                                 if(stringValue.equals("exit")){
                                     selection = "exit";
                                     break;
-                                }
-
-                                switch (preference){
-                                    case "name":
-                                        name = stringValue;
-                                        break;
-                                    case "texture":
-                                        texture = stringValue;
-                                        break;
+                                } else {
+                                    switch (preference) {
+                                        case "name":
+                                            name = stringValue;
+                                            break;
+                                        case "texture":
+                                            texture = stringValue;
+                                            break;
+                                    }
+                                    tradeFile.addNewTrade(
+                                            1,
+                                            1,
+                                            1,
+                                            name,
+                                            "rare",
+                                            texture
+                                    );
                                 }
                             }
-
-                            tradeFile.addNewTrade(
-                                    1,
-                                    1,
-                                    1,
-                                    name,
-                                    "rare",
-                                    texture
-                            );
                         }
                         else if(selection.startsWith("c")) {
                             System.out.println("complete mode");
@@ -105,42 +104,41 @@ public class Main {
                                 if(stringValue.equals("exit")){
                                     selection = "exit";
                                     break;
-                                }
-                                int value = 1;
-                                if(stringValue.matches("\\d+")){
-                                    value = Integer.parseInt(stringValue);
-                                }
-
-                                switch (preference){
-                                    case "name":
-                                        name = stringValue;
-                                        break;
-                                    case "texture":
-                                        texture = stringValue;
-                                        break;
-                                    case "rarity":
-                                        rarity = stringValue;
-                                        break;
-                                    case "price":
-                                        price = value;
-                                        break;
-                                    case "quantity":
-                                        quantity = value;
-                                        break;
-                                    case "usages":
-                                        usages = value;
-                                        break;
+                                } else {
+                                    int value = 1;
+                                    if (stringValue.matches("\\d+")) {
+                                        value = Integer.parseInt(stringValue);
+                                    }
+                                    switch (preference) {
+                                        case "name":
+                                            name = stringValue;
+                                            break;
+                                        case "texture":
+                                            texture = stringValue;
+                                            break;
+                                        case "rarity":
+                                            rarity = stringValue;
+                                            break;
+                                        case "price":
+                                            price = value;
+                                            break;
+                                        case "quantity":
+                                            quantity = value;
+                                            break;
+                                        case "usages":
+                                            usages = value;
+                                            break;
+                                    }
+                                    tradeFile.addNewTrade(
+                                            usages,
+                                            price,
+                                            quantity,
+                                            name,
+                                            rarity,
+                                            texture
+                                    );
                                 }
                             }
-
-                            tradeFile.addNewTrade(
-                                    usages,
-                                    price,
-                                    quantity,
-                                    name,
-                                    rarity,
-                                    texture
-                            );
                         }
                         else if (selection.startsWith("p")){
                             System.out.println("personalised mode");
@@ -155,36 +153,35 @@ public class Main {
                                 if(stringValue.equals("exit")){
                                     selection = "exit";
                                     break;
-                                }
-                                int value = 1;
-                                if(stringValue.matches("\\d+")){
-                                    value = Integer.parseInt(stringValue);
-                                }
-
-                                switch (preference){
-                                    case "name":
-                                        name = stringValue;
-                                        break;
-                                    case "texture":
-                                        texture = stringValue;
-                                        break;
-                                    case "price":
-                                        price = value;
-                                        break;
-                                    case "quantity":
-                                        quantity = value;
-                                        break;
+                                } else {
+                                    int value = 1;
+                                    if (stringValue.matches("\\d+")) {
+                                        value = Integer.parseInt(stringValue);
+                                    }
+                                    switch (preference) {
+                                        case "name":
+                                            name = stringValue;
+                                            break;
+                                        case "texture":
+                                            texture = stringValue;
+                                            break;
+                                        case "price":
+                                            price = value;
+                                            break;
+                                        case "quantity":
+                                            quantity = value;
+                                            break;
+                                    }
+                                    tradeFile.addNewTrade(
+                                            usages,
+                                            price,
+                                            quantity,
+                                            name,
+                                            AddTradeFile.DEFAULT_RARITY,
+                                            texture
+                                    );
                                 }
                             }
-
-                            tradeFile.addNewTrade(
-                                    usages,
-                                    price,
-                                    quantity,
-                                    name,
-                                    AddTradeFile.DEFAULT_RARITY,
-                                    texture
-                            );
                         }
                         else if (selection.startsWith("r")){
                             System.out.println("rare mode");
@@ -201,26 +198,25 @@ public class Main {
                                 if(stringValue.equals("exit")){
                                     selection = "exit";
                                     break;
-                                }
-
-                                switch (preference){
-                                    case "name":
-                                        name = stringValue;
-                                        break;
-                                    case "texture":
-                                        texture = stringValue;
-                                        break;
+                                } else {
+                                    switch (preference) {
+                                        case "name":
+                                            name = stringValue;
+                                            break;
+                                        case "texture":
+                                            texture = stringValue;
+                                            break;
+                                    }
+                                    tradeFile.addNewTrade(
+                                            4,
+                                            5,
+                                            1,
+                                            name,
+                                            "rare",
+                                            texture
+                                    );
                                 }
                             }
-
-                            tradeFile.addNewTrade(
-                                    4,
-                                    5,
-                                    1,
-                                    name,
-                                    "rare",
-                                    texture
-                            );
                         }
                         else if (selection.startsWith("u")){
                             System.out.println("uncommon mode");
@@ -237,32 +233,64 @@ public class Main {
                                 if(stringValue.equals("exit")){
                                     selection = "exit";
                                     break;
-                                }
-
-                                switch (preference){
-                                    case "name":
-                                        name = stringValue;
-                                        break;
-                                    case "texture":
-                                        texture = stringValue;
-                                        break;
+                                } else {
+                                    switch (preference) {
+                                        case "name":
+                                            name = stringValue;
+                                            break;
+                                        case "texture":
+                                            texture = stringValue;
+                                            break;
+                                    }
+                                    tradeFile.addNewTrade(
+                                            6,
+                                            3,
+                                            1,
+                                            name,
+                                            AddTradeFile.DEFAULT_RARITY,
+                                            texture
+                                    );
                                 }
                             }
-
-                            tradeFile.addNewTrade(
-                                    6,
-                                    3,
-                                    1,
-                                    name,
-                                    AddTradeFile.DEFAULT_RARITY,
-                                    texture
-                            );
                         }
-
+                        else if (selection.startsWith("e")){
+                            System.out.println("epic mode");
+                            String name = null,texture = null;
+                            for(String preference: preferences.keySet()){
+                                if(preference.equals("usage")||
+                                        preference.equals("rarity")||
+                                        preference.equals("price")||
+                                        preference.equals("quantity")) continue;
+                                System.out.println("Add-loop: " + preference + '\n'+
+                                        preferences.get(preference)+ '\n'+
+                                        "('exit' to return to preferences selection)");
+                                String stringValue = reader.readLine();
+                                if(stringValue.equals("exit")){
+                                    selection = "exit";
+                                    break;
+                                } else {
+                                    switch (preference) {
+                                        case "name":
+                                            name = stringValue;
+                                            break;
+                                        case "texture":
+                                            texture = stringValue;
+                                            break;
+                                    }
+                                    tradeFile.addNewTrade(
+                                            1,
+                                            16,
+                                            1,
+                                            name,
+                                            "epic",
+                                            texture
+                                    );
+                                }
+                            }
+                        }
+                        System.out.println("\n\n\n");
                     }
                 }
-
-
 
                 /*System.out.println("""
                         What would you like to customise from the available properties?
@@ -293,9 +321,7 @@ public class Main {
                     tradeFile.addNewTrade(dataMap);
                 }*/
             }
-
             tradeFile.close();
-
         }
     }
 

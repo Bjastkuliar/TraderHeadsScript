@@ -60,8 +60,10 @@ public class AddTradeFile{
     private boolean writeNewTrade (String formatted){
         try {
             writer.newLine();
+            writer.newLine();
             writer.write(formatted);
             writer.flush();
+            System.out.println("Head added successfully!");
             return true;
         } catch (IOException e) {
             System.err.println("Failed to write head '"+entryCount+"' to file:\n");
