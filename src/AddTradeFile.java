@@ -65,6 +65,7 @@ public class AddTradeFile{
             return true;
         } catch (IOException e) {
             System.err.println("Failed to write head '"+entryCount+"' to file:\n");
+            //noinspection CallToPrintStackTrace
             e.printStackTrace();
         }
         return false;
@@ -76,20 +77,11 @@ public class AddTradeFile{
                              String headName,
                              String rarity,
                              String texture){
-        System.out.println(String.format(AddTradeFile.macro,++entryCount,maxTradeUsages,emeraldPrice,tradedAmount,headName,rarity,texture));
-        //writeNewTrade(String.format(AddTradeFile.macro,++entryCount,maxTradeUsages,emeraldPrice,tradedAmount,headName,rarity,texture));
+        writeNewTrade(String.format(AddTradeFile.macro,++entryCount,maxTradeUsages,emeraldPrice,tradedAmount,headName,rarity,texture));
     }
 
     public void addNewTrade(String headName, String texture){
         addNewTrade(1,1,1,headName,"uncommon",texture);
-    }
-
-    public void addNewTrade(String headName, String rarity, String texture){
-        addNewTrade(1,1,1,headName,rarity,texture);
-    }
-
-    public void addNewTrade(String headName, int rarity, String texture){
-        addNewTrade(1,1,1,headName, rarityRanks.get(rarity), texture);
     }
 
     public void addNewTrade(Map<String, String> dataMap) {

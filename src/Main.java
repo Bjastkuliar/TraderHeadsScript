@@ -41,6 +41,8 @@ public class Main {
                 System.out.println("""
                         Select the type of addition you would like to perform:
                         - 'fast' (specify name and texture) [default values for price, quantity & max uses = 1, rarity set to 'uncommon']
+                        - 'uncommon' for fast mode with different pricing ( 1 head x 3 emeralds x 6 uses)
+                        - 'rare' for fast mode with different pricing ( 1 head x 5 emeralds x 4 uses, rarity set to rare)
                         - 'personalised' (specify name, texture quantity and price)
                         - 'complete' (name, texture, quantity, price, rarity, trade usages)
                         This will enter a loop in which you will be continuously prompted to add entries,
@@ -55,24 +57,41 @@ public class Main {
                     while (!selection.startsWith("e")){
                         System.out.print("Inserting a new head with ");
                         Map<String, String> preferences = getPreferences();
-                        if(selection.startsWith("f")){
+                        if (selection.startsWith("f")){
                             System.out.println("fast mode");
-                            System.out.println("Add-loop: name\n" +
-                                    preferences.get("name")+ '\n'+
-                                    "('exit' to return to preferences selection)");
-                            String name = reader.readLine();
-                            if(name.equals("exit")){
-                                break;
-                            }
-                            System.out.println("Add-loop: texture\n" +
-                                    preferences.get("texture")+ '\n'+
-                                    "('exit' to return to preferences selection)");
-                            String texture = reader.readLine();
-                            if(texture.equals("exit")){
-                                break;
-                            }
-                            tradeFile.addNewTrade(name,texture);
+                            String name = null,texture = null;
+                            for(String preference: preferences.keySet()){
+                                if(preference.equals("usage")||
+                                        preference.equals("rarity")||
+                                        preference.equals("price")||
+                                        preference.equals("quantity")) continue;
+                                System.out.println("Add-loop: " + preference + '\n'+
+                                        preferences.get(preference)+ '\n'+
+                                        "('exit' to return to preferences selection)");
+                                String stringValue = reader.readLine();
+                                if(stringValue.equals("exit")){
+                                    selection = "exit";
+                                    break;
+                                }
 
+                                switch (preference){
+                                    case "name":
+                                        name = stringValue;
+                                        break;
+                                    case "texture":
+                                        texture = stringValue;
+                                        break;
+                                }
+                            }
+
+                            tradeFile.addNewTrade(
+                                    1,
+                                    1,
+                                    1,
+                                    name,
+                                    "rare",
+                                    texture
+                            );
                         }
                         else if(selection.startsWith("c")) {
                             System.out.println("complete mode");
@@ -167,6 +186,79 @@ public class Main {
                                     texture
                             );
                         }
+                        else if (selection.startsWith("r")){
+                            System.out.println("rare mode");
+                            String name = null,texture = null;
+                            for(String preference: preferences.keySet()){
+                                if(preference.equals("usage")||
+                                        preference.equals("rarity")||
+                                preference.equals("price")||
+                                preference.equals("quantity")) continue;
+                                System.out.println("Add-loop: " + preference + '\n'+
+                                        preferences.get(preference)+ '\n'+
+                                        "('exit' to return to preferences selection)");
+                                String stringValue = reader.readLine();
+                                if(stringValue.equals("exit")){
+                                    selection = "exit";
+                                    break;
+                                }
+
+                                switch (preference){
+                                    case "name":
+                                        name = stringValue;
+                                        break;
+                                    case "texture":
+                                        texture = stringValue;
+                                        break;
+                                }
+                            }
+
+                            tradeFile.addNewTrade(
+                                    4,
+                                    5,
+                                    1,
+                                    name,
+                                    "rare",
+                                    texture
+                            );
+                        }
+                        else if (selection.startsWith("u")){
+                            System.out.println("uncommon mode");
+                            String name = null,texture = null;
+                            for(String preference: preferences.keySet()){
+                                if(preference.equals("usage")||
+                                        preference.equals("rarity")||
+                                        preference.equals("price")||
+                                        preference.equals("quantity")) continue;
+                                System.out.println("Add-loop: " + preference + '\n'+
+                                        preferences.get(preference)+ '\n'+
+                                        "('exit' to return to preferences selection)");
+                                String stringValue = reader.readLine();
+                                if(stringValue.equals("exit")){
+                                    selection = "exit";
+                                    break;
+                                }
+
+                                switch (preference){
+                                    case "name":
+                                        name = stringValue;
+                                        break;
+                                    case "texture":
+                                        texture = stringValue;
+                                        break;
+                                }
+                            }
+
+                            tradeFile.addNewTrade(
+                                    6,
+                                    3,
+                                    1,
+                                    name,
+                                    AddTradeFile.DEFAULT_RARITY,
+                                    texture
+                            );
+                        }
+
                     }
                 }
 
