@@ -1,16 +1,16 @@
 import java.io.*;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class AddTradeFile{
 
     List<String> rarityRanks = List.of(
-            "epic",
-            "rare",
+            "common",
             "uncommon",
-            "common"
+            "rare",
+            "epic"
     );
 
+    public static final String DEFAULT_RARITY = "uncommon";
     private final BufferedReader reader;
     private final BufferedWriter writer;
     public static final String fileName = "add_trade.mcfunction";
@@ -52,35 +52,110 @@ public class AddTradeFile{
         reader.close();
     }
 
-    private void addNewTrade (
-            String macro,
-            int entryNumber,
-            int maxTradeUsages,
-            int emeraldPrice,
-            int tradedAmount,
-            String headName,
-            String rarity,
-            String texture){
-        String formatted = String.format(macro,entryNumber,maxTradeUsages,emeraldPrice,tradedAmount,headName,rarity,texture);
+    /**
+     * Writes the provided string to the file.
+     * @param formatted The formatted input for the file to be written.
+     * @return whether the operation was successful.
+     */
+    private boolean writeNewTrade (String formatted){
         try {
             writer.newLine();
             writer.write(formatted);
             writer.flush();
+            return true;
         } catch (IOException e) {
-            System.err.println("Failed to write head '"+headName+"' to file:\n");
+            System.err.println("Failed to write head '"+entryCount+"' to file:\n");
             e.printStackTrace();
         }
+        return false;
+    }
+    
+    public void addNewTrade(int maxTradeUsages,
+                             int emeraldPrice,
+                             int tradedAmount,
+                             String headName,
+                             String rarity,
+                             String texture){
+        System.out.println(String.format(AddTradeFile.macro,++entryCount,maxTradeUsages,emeraldPrice,tradedAmount,headName,rarity,texture));
+        //writeNewTrade(String.format(AddTradeFile.macro,++entryCount,maxTradeUsages,emeraldPrice,tradedAmount,headName,rarity,texture));
     }
 
     public void addNewTrade(String headName, String texture){
-        addNewTrade(macro,++entryCount,1,1,1,headName,"uncommon",texture);
+        addNewTrade(1,1,1,headName,"uncommon",texture);
     }
 
     public void addNewTrade(String headName, String rarity, String texture){
-        addNewTrade(macro,++entryCount,1,1,1,headName,rarity,texture);
+        addNewTrade(1,1,1,headName,rarity,texture);
     }
 
     public void addNewTrade(String headName, int rarity, String texture){
-        addNewTrade(macro,++entryCount,1,1,1,headName, rarityRanks.get(rarity), texture);
+        addNewTrade(1,1,1,headName, rarityRanks.get(rarity), texture);
+    }
+
+    public void addNewTrade(Map<String, String> dataMap) {
+        String name = dataMap.get("name"),
+                texture = dataMap.get("texture"),
+                rarity,
+        priceString = dataMap.get("price"),
+        qtyString = dataMap.get("quantity"),
+        rarityString = dataMap.get("rarity"),
+        usagesString = dataMap.get("usages");
+
+        int price,quantity,usages;
+
+        if(rarityString!=null&&!rarityString.isBlank()){
+            if(rarityString.matches("\\d+")){
+                try{
+                    rarity = rarityRanks.get(Integer.parseInt(rarityString));
+                } catch (IndexOutOfBoundsException ignored){
+                    rarity = DEFAULT_RARITY;
+                }
+            } else if(!rarityRanks.contains(rarityString)){
+                rarity = DEFAULT_RARITY;
+            } else {
+                rarity = rarityString;
+            }
+        } else {
+            rarity = DEFAULT_RARITY;
+        }
+
+        if(usagesString!=null&&!usagesString.isBlank()){
+            if(usagesString.matches("\\d+")){
+                usages = Integer.parseInt(usagesString);
+            } else {
+                usages = 1;
+            }
+        } else {
+            usages = 1;
+        }
+
+        if(priceString!=null&&!priceString.isBlank()){
+            if(priceString.matches("\\d+")){
+                price = Integer.parseInt(priceString);
+            } else {
+                price = 1;
+            }
+        } else {
+            price = 1;
+        }
+
+        if(qtyString!=null&&!qtyString.isBlank()){
+            if(qtyString.matches("\\d+")){
+                quantity = Integer.parseInt(qtyString);
+            } else {
+                quantity = 1;
+            }
+        } else {
+            quantity = 1;
+        }
+
+        addNewTrade(
+                usages,
+                price,
+                quantity,
+                name,
+                rarity,
+                texture
+        );
     }
 }
