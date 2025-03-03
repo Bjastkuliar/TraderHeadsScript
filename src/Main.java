@@ -81,16 +81,17 @@ public class Main {
                                             texture = stringValue;
                                             break;
                                     }
-                                    tradeFile.addNewTrade(
-                                            1,
-                                            1,
-                                            1,
-                                            name,
-                                            "rare",
-                                            texture
-                                    );
                                 }
                             }
+                            if(!selection.equals("exit"))
+                                tradeFile.addNewTrade(
+                                        1,
+                                        1,
+                                        1,
+                                        name,
+                                        "rare",
+                                        texture
+                                );
                         }
                         else if(selection.startsWith("c")) {
                             System.out.println("complete mode");
@@ -129,16 +130,17 @@ public class Main {
                                             usages = value;
                                             break;
                                     }
-                                    tradeFile.addNewTrade(
-                                            usages,
-                                            price,
-                                            quantity,
-                                            name,
-                                            rarity,
-                                            texture
-                                    );
                                 }
                             }
+                            if(!selection.equals("exit"))
+                                tradeFile.addNewTrade(
+                                        usages,
+                                        price,
+                                        quantity,
+                                        name,
+                                        rarity,
+                                        texture
+                                );
                         }
                         else if (selection.startsWith("p")){
                             System.out.println("personalised mode");
@@ -172,16 +174,17 @@ public class Main {
                                             quantity = value;
                                             break;
                                     }
-                                    tradeFile.addNewTrade(
-                                            usages,
-                                            price,
-                                            quantity,
-                                            name,
-                                            AddTradeFile.DEFAULT_RARITY,
-                                            texture
-                                    );
                                 }
                             }
+                            if(!selection.equals("exit"))
+                                tradeFile.addNewTrade(
+                                        usages,
+                                        price,
+                                        quantity,
+                                        name,
+                                        AddTradeFile.DEFAULT_RARITY,
+                                        texture
+                                );
                         }
                         else if (selection.startsWith("r")){
                             System.out.println("rare mode");
@@ -207,16 +210,17 @@ public class Main {
                                             texture = stringValue;
                                             break;
                                     }
-                                    tradeFile.addNewTrade(
-                                            4,
-                                            5,
-                                            1,
-                                            name,
-                                            "rare",
-                                            texture
-                                    );
                                 }
                             }
+                            if(!selection.equals("exit"))
+                                tradeFile.addNewTrade(
+                                        4,
+                                        5,
+                                        1,
+                                        name,
+                                        "rare",
+                                        texture
+                                );
                         }
                         else if (selection.startsWith("u")){
                             System.out.println("uncommon mode");
@@ -242,16 +246,17 @@ public class Main {
                                             texture = stringValue;
                                             break;
                                     }
-                                    tradeFile.addNewTrade(
-                                            6,
-                                            3,
-                                            1,
-                                            name,
-                                            AddTradeFile.DEFAULT_RARITY,
-                                            texture
-                                    );
                                 }
                             }
+                            if(!selection.equals("exit"))
+                                tradeFile.addNewTrade(
+                                        6,
+                                        3,
+                                        1,
+                                        name,
+                                        AddTradeFile.DEFAULT_RARITY,
+                                        texture
+                                );
                         }
                         else if (selection.startsWith("e")){
                             System.out.println("epic mode");
@@ -277,16 +282,17 @@ public class Main {
                                             texture = stringValue;
                                             break;
                                     }
-                                    tradeFile.addNewTrade(
-                                            1,
-                                            16,
-                                            1,
-                                            name,
-                                            "epic",
-                                            texture
-                                    );
                                 }
                             }
+                            if(!selection.equals("exit"))
+                                tradeFile.addNewTrade(
+                                    1,
+                                    16,
+                                    1,
+                                    name,
+                                    "epic",
+                                    texture
+                                );
                         }
                         System.out.println("\n\n\n");
                     }
