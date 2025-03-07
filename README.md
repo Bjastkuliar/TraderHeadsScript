@@ -34,3 +34,6 @@ an additional file that has to be replaced inside the original plugin, namely
 > which I originally had not intended to have, but that I then chose to keep: traders
 > will no longer have a `fixed 8` trades, but instead they'll randomly get from `0 to 8`
 > trades instead!
+
+## Concerning intellectual property
+The data contained in the [`custom-files`](custom-files) folder are modified files from [vanillatweaks.net](https://vanillatweaks.net/), I do not own any property on them. The data for the custom heads added to [`add_trade.mcfunction`](custom-heads/add_trade.mcfunction) comes from [minecraft-heads](https://minecraft-heads.com/).
