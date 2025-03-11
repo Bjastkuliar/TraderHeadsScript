@@ -18,9 +18,9 @@ Usually heads sites (like [minecraft-heads](https://minecraft-heads.com/)) give 
 to the various skins in different formats. For the `texture` you are looking for
 the `value` format listed under the "For Developers" section (at least on that site).
 
-## Implementation of generated files
+## Modding the original datapack
 The script simply appends new lines to the `add_trade.mcfunction` file of
-the plugin. When compiling and executing the source, you will need to specify
+the plugin. When running the script, you will be asked for
 the **absolute path** at which the file currently resides 
 (either the folder or the actual *.mcfunction* file)
 
